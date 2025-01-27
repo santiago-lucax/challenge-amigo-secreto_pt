@@ -1,7 +1,8 @@
 // O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
 
-const friends = [];
+let friends = [];
 const list = document.querySelector('#listaAmigos');
+const friendsSortedList = [];
 
 // Evento com a função a qual faz a verificação e incremento dos nomes.
 document.querySelector('.button-add').addEventListener('click', () => {
@@ -41,12 +42,24 @@ const friendSorted = (numSortedInArray) => {
     return Math.floor(Math.random() * ((numSortedInArray.length - 1) - (0 - 1)) + 0); // Retorna um valor entre 0 e o tamanho total da array menos um.
 }
 
+// Função onde é verificado se o nome já foi ou não sorteado dentro da array.
+const verifySortedNames = (friendAlreadySorted) => {
+    let msg = document.querySelector('#resultado');
+    if (!friendsSortedList.includes(friendAlreadySorted)) {
+        msg.innerHTML = `O amigo secreto sorteado é: ${friendAlreadySorted}`;
+        friends = friends.filter(item => item !== friendAlreadySorted); // Caso o nome for sorteado, ele é removido da array.
+        if (friends.length === 0) { // Caso não haja mais nomes dentro da array, exibe uma mensagem.
+            return msg.innerHTML += '</br><span style="color: orange">Todos os nomes já foram sorteados! Digite mais nomes!<span>';
+        }
+    } 
+}
+
 // Evento com a função a qual verifica se a array 'friends' há algum valor, se sim, digita um nome aleatório na tela.
 document.querySelector('.button-draw').addEventListener('click', () => {
     if (friends.length) {
         list.innerHTML = '';  // Limpa a lista antes de adicionar os novos itens.
-        const randomValue = friendSorted(friends);
-        document.querySelector('#resultado').innerHTML = `O amigo secreto sorteado é: ${friends[randomValue]}`;
+        const friendSortedName = friends[friendSorted(friends)];
+        verifySortedNames(friendSortedName);
     } else {
         alert('Você ainda não digitou amigo algum!'); // Caso você não tenha digitado nenhum amigo ainda, exibirá este erro.
     }
