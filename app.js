@@ -1,8 +1,10 @@
 // O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
 
+// Variáveis globais.
 let friends = [];
 const list = document.querySelector('#listaAmigos');
 const friendsSortedList = [];
+let msg = document.querySelector('#resultado');
 
 // Evento com a função a qual faz a verificação e incremento dos nomes.
 document.querySelector('.button-add').addEventListener('click', () => {
@@ -24,6 +26,7 @@ document.querySelector('.button-add').addEventListener('click', () => {
 const clearAndFocus = (input) => {
     input.focus(); // Coloca um foco na barra de input.
     input.value = ''; // Zera o valor que está na barra de input.
+    msg.innerHTML = ''; // Toda vez que você adiciona um nome, a mensagem de sorteado é apagada.
 }
 
 // Função que percorre todos os nomes já adicionado e exibe-os.
@@ -44,7 +47,6 @@ const friendSorted = (numSortedInArray) => {
 
 // Função onde é verificado se o nome já foi ou não sorteado dentro da array.
 const verifySortedNames = (friendAlreadySorted) => {
-    let msg = document.querySelector('#resultado');
     if (!friendsSortedList.includes(friendAlreadySorted)) {
         msg.innerHTML = `O amigo secreto sorteado é: ${friendAlreadySorted}`;
         friends = friends.filter(item => item !== friendAlreadySorted); // Caso o nome for sorteado, ele é removido da array.
