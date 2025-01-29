@@ -5,10 +5,11 @@ let friends = [];
 const list = document.querySelector('#listaAmigos');
 const friendsSortedList = [];
 let msg = document.querySelector('#resultado');
+const buttonAdd = document.querySelector('.button-add');
+const input = document.querySelector('#amigo');
 
 // Evento com a função a qual faz a verificação e incremento dos nomes.
-document.querySelector('.button-add').addEventListener('click', () => {
-    const input = document.querySelector('#amigo');
+const addFriends = () => {
 
     // Condição que verifica se o valor do input é um número ou está vazio.
     if (input.value === '' || !isNaN(input.value)) {
@@ -20,6 +21,14 @@ document.querySelector('.button-add').addEventListener('click', () => {
     // Chamada da função que limpa e da um foco no input.
     clearAndFocus(input);
     listFriendsAdd();
+}
+
+// Tanto com o clique no botão, quanto com o pressionar a tecla "Enter" do teclado, a função de adicionar um amigo será executada.
+buttonAdd.addEventListener('click', addFriends);
+input.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        addFriends();
+    }
 });
 
 // Função que limpa o valor do input e foca para inserir um novo nome.

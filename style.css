@@ -160,3 +160,15 @@ ul {
 .button-draw:hover {
     background-color: var(--color-button-hover);
 }
+
+/* Lista dos sorteados */
+.name-list {
+    background-color: #C4C4C4;  
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.3); 
+}
+
+.name-list li {
+    margin: 15px;
+}
